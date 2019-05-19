@@ -14,7 +14,7 @@ const fsp = require('fs-promise');
  *
  */
 const MostCommonPathFinder = (() => {
-var i = 0;
+var i = 0; //declare and initialize variables
 var j = 0;
 var counts;
 var maxCount;
@@ -24,10 +24,10 @@ var mostCommonPath = [];
   return {
     findPath: (logFilePath) => {
       return fsp.readFile(logFilePath, 'utf8').then((logfileString) => {
-        var newString = logfileString.replace(/\s/g, ",");
-        array = newString.split(" ");
+        var newString = logfileString.replace(/\s/g, ","); //remove breaks from string and replace with commas
+        array = newString.split(" "); //string -> array
 
-        function removeElements(array) {
+        function removeElements(array) { //function to remove certain items from array
           var what, a = arguments, b = a.length, c;
           while (b > 1 && array.length) {
               what = a[--b];
@@ -43,10 +43,10 @@ var mostCommonPath = [];
          removeElements(newArray, '1', '2', '3', '4', '5', '6', '7');
        }
          
-       newArray.shift();
+       newArray.shift(); //remove empty strings at the beginning and end of array
        newArray.pop();
        
-       let counts = newArray.reduce((a, b) => 
+       let counts = newArray.reduce((a, b) => //finds pattern with max count 
        {
          a[b] = (a[b] || 0) + 1;
          return a;
